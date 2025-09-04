@@ -9,15 +9,34 @@
     <p>Rock Paper Scissors</p> <!---Computer picks a random number between 0 & 1--->
     <button onclick="
         const randomNum = Math.random(); 
+        let computerMove = ` `;
         
         if (randomNum >= 0 && randomNum < 1/3 ) {
-            console.log(`rock`);
+            computerMove = `rock`;
         } else if (randomNum >= 1/3 && randomNum < 2/3) {
-            console.log(`Paper`);
+            computerMove = `paper`;
         } else if (randomNum >= 2/3 && randomNum < 1) {
-            console.log(`Scissors`);
+            computerMove = `scissors`;
         }
-    ">Rock</button>
+        console.log(computerMove);
+
+        let result = ` `;
+
+        if (computerMove === `rock`) {
+            result = `Tie.`;
+        }
+
+        if (computerMove === `paper`) {
+            result = `You lose.`;
+        }
+
+          if (computerMove === `scissors`) {
+            result = `You win.`;
+        }
+
+        alert(`You picked rock. Computer picked ${computerMove}. ${result}`)
+
+    ">Rock</button> <!-- If statments: always save strings in variables to use later-->
     <button>Paper</button> <!---Convert a random number into a move--->
     <button>Scissors</button>
 
