@@ -18,7 +18,6 @@
         } else if (randomNum >= 2/3 && randomNum < 1) {
             computerMove = `scissors`;
         }
-        console.log(computerMove);
 
         let result = ` `;
 
@@ -33,9 +32,8 @@
           if (computerMove === `scissors`) {
             result = `You win.`;
         }
-
+        
         alert(`You picked rock. Computer picked ${computerMove}. ${result}`)
-
     ">Rock</button> <!-- If statments: always save strings in variables to use later-->
     <button>Paper</button> <!---Convert a random number into a move--->
     <button>Scissors</button>
