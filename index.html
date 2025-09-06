@@ -6,96 +6,67 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <p>Rock Paper Scissors</p> <!---Computer picks a random number between 0 & 1--->
-    <button onclick="
-        const randomNum = Math.random(); 
-        let computerMove = ` `;
-        
-        if (randomNum >= 0 && randomNum < 1/3 ) {
-            computerMove = `rock`;
-        } else if (randomNum >= 1/3 && randomNum < 2/3) {
-            computerMove = `paper`;
-        } else if (randomNum >= 2/3 && randomNum < 1) {
-            computerMove = `scissors`;
+    <p>Rock Paper Scissors</p> 
+
+    <button onclick="playGame('rock');">Rock</button> 
+
+    <button onclick="playGame('paper');">Paper</button> 
+
+    <button onclick="playGame('scissors');">Scissors</button>
+
+    <script> 
+        function playGame(userMove) {
+            const computerMove = pickComputerMove();
+
+            let result = '';
+
+            if (userMove === 'scissors') {
+                if (computerMove === 'rock') {
+                    result = 'You lose.';
+                } else if (computerMove === 'paper') {
+                    result = 'You win.';
+                } else if (computerMove === 'scissors') {
+                    result = 'Tie.';
+                }
+
+            } else if (userMove === 'paper') {
+                 if (computerMove === 'rock') {
+                    result = 'You win.';
+                } else if (computerMove === 'paper') {
+                    result = 'Tie.';
+                } else if (computerMove === 'scissors') {
+                    result = 'You lose.';
+                }
+                
+            } else if (userMove === 'rock') {
+                 if (computerMove === 'rock') {
+                    result = 'Tie.';
+                } else if (computerMove === 'paper') {
+                    result = 'You lose';
+                } else if (computerMove === 'scissors') {
+                    result = 'You win.';
+                }
+            }
+            
+            alert(`You picked ${userMove}. Computer picked ${computerMove}. ${result}`);
         }
 
-        let result = ` `;
+        function pickComputerMove() {
+            const randomNum = Math.random();
 
-        if (computerMove === `rock`) {
-            result = `Tie.`;
+            let computerMove = '';
+
+            if (randomNum >= 0 && randomNum < 1/3 ) {
+                computerMove = 'rock';
+            } else if (randomNum >= 1/3 && randomNum < 2/3) {
+                computerMove = 'paper';
+            } else if (randomNum >= 2/3 && randomNum < 1) {
+                computerMove = 'scissors';
+            }
+
+            return computerMove;
         }
-
-        if (computerMove === `paper`) {
-            result = `You lose.`;
-        }
-
-          if (computerMove === `scissors`) {
-            result = `You win.`;
-        }
-        
-        alert(`You picked rock. Computer picked ${computerMove}. ${result}`)
-    ">Rock</button> <!-- If statments: always save strings in variables to use later-->
-    
-    <button onclick="
-        const randomNum2 = Math.random(); 
-        let computerMove2 = ` `;
-        
-        if (randomNum2 >= 0 && randomNum2 < 1/3 ) {
-            computerMove2 = `rock`;
-        } else if (randomNum2 >= 1/3 && randomNum2 < 2/3) {
-            computerMove2 = `paper`;
-        } else if (randomNum2 >= 2/3 && randomNum2 < 1) {
-            computerMove2 = `scissors`;
-        }
-
-        let result2 = ` `;
-
-        if (computerMove2 === `rock`) {
-            result2 = `You win.`;
-        }
-
-        if (computerMove2 === `paper`) {
-            result2 = `Tie.`;
-        }
-
-          if (computerMove2 === `scissors`) {
-            result2 = `You lose.`;
-        }
-        
-        alert(`You picked Paper. Computer picked ${computerMove2}. ${result2}`)
-    ">Paper</button> <!---Convert a random number into a move--->
-    <button onclick="
-        const randomNum3 = Math.random(); 
-        let computerMove3 = ` `;
-        
-        if (randomNum3 >= 0 && randomNum3 < 1/3 ) {
-            computerMove3 = `rock`;
-        } else if (randomNum3 >= 1/3 && randomNum3 < 2/3) {
-            computerMove3 = `paper`;
-        } else if (randomNum3 >= 2/3 && randomNum3 < 1) {
-            computerMove3 = `scissors`;
-        }
-
-        let result3 = ` `;
-
-        if (computerMove3 === `rock`) {
-            result3 = `You lose.`;
-        }
-
-        if (computerMove3 === `paper`) {
-            result3 = `You win.`;
-        }
-
-          if (computerMove3 === `scissors`) {
-            result3 = `Tie.`;
-        }
-        
-        alert(`You picked Scissors. Computer picked ${computerMove3}. ${result3}`)
-    ">Scissors</button>
-
-    <script>
-         
-
     </script>
+<!--If I see that I am repeating my code, then use functions instead because functions allows me to reuse my code!-->
 </body>
 </html>
