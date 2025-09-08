@@ -18,14 +18,14 @@
         score.wins = 0;
         score.losses = 0;
         score.ties = 0;
-        localStorage.removeItem('score'); <!--Remove score from localStorage when reset button is clicked so that it can clear score even when page is refeshed but the problem is... this results in null-->
+        localStorage.removeItem('score'); //Remove score from localStorage when reset button is clicked so that it can clear score even when page is refeshed but the problem is... this results in null
     ">Reset Score</button>
 
     <script> 
-     <!--Convert JSON string back to an object and retrieve object from localStorage to use even after page refreshes-->
+     //Convert JSON string back to an object and retrieve object from localStorage to use even after page refreshes
         let score = JSON.parse(localStorage.getItem('score'));
 
-        if (score === null) { <!--Need to add statement because receiveed an error and showed null due to removing score from localStorage when clicking reset button-->
+        if (score === null) { //Need to add statement because receiveed an error and showed null due to removing score from localStorage when clicking reset button
             score = {
                 wins: 0,
                 losses: 0,
@@ -74,7 +74,7 @@
                 score.ties += 1;
             }
 
-            localStorage.setItem('score', JSON.stringify(score)); <!--Save score object in localStorage and convert to string because localStorage can only deal with strings-->
+            localStorage.setItem('score', JSON.stringify(score)); //Save score object in localStorage and convert to string because localStorage can only deal with strings
             
             alert(`You picked ${userMove}. Computer picked ${computerMove}. ${result}
 Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
@@ -96,6 +96,5 @@ Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
             return computerMove;
         }
     </script>
-<!--If I see that I am repeating my code, then use functions instead because functions allows me to reuse my code!-->
 </body>
 </html>
