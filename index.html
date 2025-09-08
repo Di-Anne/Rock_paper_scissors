@@ -18,14 +18,14 @@
         score.wins = 0;
         score.losses = 0;
         score.ties = 0;
-        localStorage.removeItem('score'); <!--Remove score from localStorage when reset button is clicked so that it can clear score even when page is refeshed-->
+        localStorage.removeItem('score'); <!--Remove score from localStorage when reset button is clicked so that it can clear score even when page is refeshed but the problem is... this results in null-->
     ">Reset Score</button>
 
     <script> 
      <!--Convert JSON string back to an object and retrieve object from localStorage to use even after page refreshes-->
         let score = JSON.parse(localStorage.getItem('score'));
 
-        if (score === null) { <!--Need to had this statement because receiveed an error and showed null due to removing score from localStorage when clicking reset button-->
+        if (score === null) { <!--Need to add statement because receiveed an error and showed null due to removing score from localStorage when clicking reset button-->
             score = {
                 wins: 0,
                 losses: 0,
