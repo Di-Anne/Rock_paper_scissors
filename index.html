@@ -14,6 +14,10 @@
 
     <button onclick="playGame('scissors');">Scissors</button>
 
+    <p class="js-result"></p>
+
+    <p class="js-moves"></p>
+
     <p class="js-score"></p>
 
     <button
@@ -21,10 +25,9 @@
         score.wins = 0;
         score.losses = 0;
         score.ties = 0;
-         updateScoreElement ()
+         updateScoreElement () //Reset score on webpage using javaScript in a function
         localStorage.removeItem('score'); //Remove score from localStorage when reset button is clicked so that it can clear score even when page is refeshed but the problem is... this results in null
-    "
-    >
+    ">
       Reset Score
     </button>
 
