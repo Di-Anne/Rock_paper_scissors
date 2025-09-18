@@ -1,100 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-</head>
-<body>
-    <p>Rock Paper Scissors</p> 
+  </head>
+  <body>
+    <p>Rock Paper Scissors</p>
 
-    <button onclick="playGame('rock');">Rock</button> 
+    <button onclick="playGame('rock');">Rock</button>
 
-    <button onclick="playGame('paper');">Paper</button> 
+    <button onclick="playGame('paper');">Paper</button>
 
     <button onclick="playGame('scissors');">Scissors</button>
 
-    <button onclick = "
+    <p class="js-score"></p>
+
+    <button
+      onclick="
         score.wins = 0;
         score.losses = 0;
         score.ties = 0;
         localStorage.removeItem('score'); //Remove score from localStorage when reset button is clicked so that it can clear score even when page is refeshed but the problem is... this results in null
-    ">Reset Score</button>
+    "
+    >
+      Reset Score
+    </button>
 
-    <script> 
-     //Convert JSON string back to an object and retrieve object from localStorage to use even after page refreshes
-        let score = JSON.parse(localStorage.getItem('score'));
+    <script>
+      //Convert JSON string back to an object and retrieve object from localStorage to use even after page refreshes
+      let score = JSON.parse(localStorage.getItem("score"));
 
-        if (score === null) { //Need to add statement because receiveed an error and showed null due to removing score from localStorage when clicking reset button
-            score = {
-                wins: 0,
-                losses: 0,
-                ties: 0
-            }
+      document.querySelector('.js-score')
+        .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+
+      if (score === null) {
+        //Need to add statement because receiveed an error and showed null due to removing score from localStorage when clicking reset button
+        score = {
+          wins: 0,
+          losses: 0,
+          ties: 0,
+        };
+      }
+
+      function playGame(userMove) {
+        const computerMove = pickComputerMove();
+
+        let result = "";
+
+        if (userMove === "scissors") {
+          if (computerMove === "rock") {
+            result = "You lose.";
+          } else if (computerMove === "paper") {
+            result = "You win.";
+          } else if (computerMove === "scissors") {
+            result = "Tie.";
+          }
+        } else if (userMove === "paper") {
+          if (computerMove === "rock") {
+            result = "You win.";
+          } else if (computerMove === "paper") {
+            result = "Tie.";
+          } else if (computerMove === "scissors") {
+            result = "You lose.";
+          }
+        } else if (userMove === "rock") {
+          if (computerMove === "rock") {
+            result = "Tie.";
+          } else if (computerMove === "paper") {
+            result = "You lose.";
+          } else if (computerMove === "scissors") {
+            result = "You win.";
+          }
         }
-    
-        function playGame(userMove) {
-            const computerMove = pickComputerMove();
 
-            let result = '';
+        if (result === "You win.") {
+          score.wins += 1;
+        } else if (result === "You lose.") {
+          score.losses += 1;
+        } else if (result === "Tie.") {
+          score.ties += 1;
+        }
 
-            if (userMove === 'scissors') {
-                if (computerMove === 'rock') {
-                    result = 'You lose.';
-                } else if (computerMove === 'paper') {
-                    result = 'You win.';
-                } else if (computerMove === 'scissors') {
-                    result = 'Tie.';
-                }
+        localStorage.setItem("score", JSON.stringify(score)); //Save score object in localStorage and convert to string because localStorage can only deal with strings
 
-            } else if (userMove === 'paper') {
-                 if (computerMove === 'rock') {
-                    result = 'You win.';
-                } else if (computerMove === 'paper') {
-                    result = 'Tie.';
-                } else if (computerMove === 'scissors') {
-                    result = 'You lose.';
-                }
-                
-            } else if (userMove === 'rock') {
-                 if (computerMove === 'rock') {
-                    result = 'Tie.';
-                } else if (computerMove === 'paper') {
-                    result = 'You lose.';
-                } else if (computerMove === 'scissors') {
-                    result = 'You win.';
-                }
-            }
-
-            if (result === 'You win.') {
-                score.wins += 1;
-            } else if (result === 'You lose.') {
-                score.losses += 1;
-            } else if (result === 'Tie.') {
-                score.ties += 1;
-            }
-
-            localStorage.setItem('score', JSON.stringify(score)); //Save score object in localStorage and convert to string because localStorage can only deal with strings
-            
-            alert(`You picked ${userMove}. Computer picked ${computerMove}. ${result}
+        alert(`You picked ${userMove}. Computer picked ${computerMove}. ${result}
 Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+      }
+
+      function pickComputerMove() {
+        const randomNum = Math.random();
+
+        let computerMove = "";
+
+        if (randomNum >= 0 && randomNum < 1 / 3) {
+          computerMove = "rock";
+        } else if (randomNum >= 1 / 3 && randomNum < 2 / 3) {
+          computerMove = "paper";
+        } else if (randomNum >= 2 / 3 && randomNum < 1) {
+          computerMove = "scissors";
         }
 
-        function pickComputerMove() {
-            const randomNum = Math.random();
-
-            let computerMove = '';
-
-            if (randomNum >= 0 && randomNum < 1/3 ) {
-                computerMove = 'rock';
-            } else if (randomNum >= 1/3 && randomNum < 2/3) {
-                computerMove = 'paper';
-            } else if (randomNum >= 2/3 && randomNum < 1) {
-                computerMove = 'scissors';
-            }
-
-            return computerMove;
-        }
+        return computerMove;
+      }
     </script>
-</body>
+  </body>
 </html>
