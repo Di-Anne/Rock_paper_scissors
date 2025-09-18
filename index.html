@@ -16,16 +16,36 @@
         font-weight: bold;
       }
 
+      .move-icon {
+        height: 50px;
+      }
+
+      .move-button {
+        background-color: transparent;
+        border: 3px solid white;
+        width: 120px;
+        height: 120px; /*Used Width and height instead of padding because hands on images are different sizes*/
+        border-radius: 60px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
     </style>
   </head>
   <body>
     <p class="title">Rock Paper Scissors</p>
 
-    <button onclick="playGame('rock');"><img src="rock-emoji.png"></button>
+    <button onclick="playGame('rock');" class="move-button">
+      <img src="rock-emoji.png" class="move-icon">
+    </button>
 
-    <button onclick="playGame('paper');"><img src="paper-emoji.png"></button>
+    <button onclick="playGame('paper');" class="move-button">
+      <img src="paper-emoji.png" class="move-icon">
+    </button>
 
-    <button onclick="playGame('scissors');"><img src="scissors-emoji.png"></button>
+    <button onclick="playGame('scissors');" class="move-button">
+      <img src="scissors-emoji.png" class="move-icon">
+    </button>
 
     <p class="js-result"></p>
 
