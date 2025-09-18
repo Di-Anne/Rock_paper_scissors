@@ -87,10 +87,10 @@
 
         updateScoreElement () 
 
-        document.querySelector('.js-result')
+        document.querySelector('.js-result').innerHTML = `${result}`;
 
         document.querySelector('.js-moves')
-          .innerHTML = `You picked ${userMove}. Computer picked ${computerMove}. ${result}`
+          .innerHTML = `You: ${userMove} - Computer: ${computerMove}.`
       }
 
         // Update score on webpage and place in function to reuse code
