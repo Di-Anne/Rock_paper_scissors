@@ -21,6 +21,7 @@
         score.wins = 0;
         score.losses = 0;
         score.ties = 0;
+         updateScoreElement ()
         localStorage.removeItem('score'); //Remove score from localStorage when reset button is clicked so that it can clear score even when page is refeshed but the problem is... this results in null
     "
     >
@@ -29,19 +30,15 @@
 
     <script>
       //Convert JSON string back to an object and retrieve object from localStorage to use even after page refreshes
-      let score = JSON.parse(localStorage.getItem("score"));
-
-      document.querySelector('.js-score')
-        .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
-
-      if (score === null) {
-        //Need to add statement because receiveed an error and showed null due to removing score from localStorage when clicking reset button
-        score = {
+      let score = JSON.parse(localStorage.getItem("score")) || { 
           wins: 0,
           losses: 0,
           ties: 0,
         };
-      }
+
+      document.querySelector('.js-score')
+        .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, 
+        Ties: ${score.ties}`; // Move score from alert pop-up to show on webpage
 
       function playGame(userMove) {
         const computerMove = pickComputerMove();
@@ -74,6 +71,7 @@
           }
         }
 
+        //Update the score
         if (result === "You win.") {
           score.wins += 1;
         } else if (result === "You lose.") {
@@ -84,9 +82,18 @@
 
         localStorage.setItem("score", JSON.stringify(score)); //Save score object in localStorage and convert to string because localStorage can only deal with strings
 
+        updateScoreElement ()
+      
         alert(`You picked ${userMove}. Computer picked ${computerMove}. ${result}
 Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
       }
+
+        // Update score on webpage and place in function to reuse code
+        function updateScoreElement () {
+          document.querySelector('.js-score')
+          .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, 
+          Ties: ${score.ties}`;
+        }
 
       function pickComputerMove() {
         const randomNum = Math.random();
